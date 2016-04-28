@@ -1,0 +1,17 @@
+﻿<ul class="nav navbar-nav navbar-right">
+    @if (Session["Id"] != null)
+    {
+        <li>@Html.ActionLink("Logout", "Logout", "BlogUsers")</li>
+        <li>@Html.ActionLink("Create a blog" , "CreateBlog", "BlogCreation")</li>
+        
+      
+    }
+        
+
+    @if (Session["Id"] == null)
+    {
+        <li>@Html.ActionLink("Login", "Login", "BlogUsers")</li>
+        <li>@Html.ActionLink("Registration", "Registration", "BlogUsers")</li>
+        
+    }
+</ul>

@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section Scripts {
+
+    <script>
+
+
+        $(document).ready(function () {
+            $.ajax({
+                url: "/Home/publicBlogsCount",
+                type: "GET",
+                dataType: "json",
+                success: getBlogNumber, // converts the count of public blog posts to string to an intiger.
+                error: function (error) {
+                    alert(error.responseText);
+                }
+
+            });
+        });
+
+        var publicBlogTotal;
+
+        function getBlogNumber(data) {
+            publicBlogTotal = parseInt(data);
+        }
+
+
+
+
+
+
+        var InUseBlog;  // Id data will get put into this
+
+
+        $(document).ready(function () {
+            $.ajax({
+                url: "/Home/GrabNewestPost",
+                type: "GET",
+                dataType: "json",
+                success: displayBlogPosts, // this is name of functions to insert posts into html using jQuery
+                error: function (error) {
+                    alert(error.responseText);
+                }
+
+            });
+        });
+
+
+
+        function displayBlogPosts(data) {
+
+            InUseBlog = data.Id;
+            $("#Title").text(data.Title);  //make id for title html
+            $("#Content").text(data.Content); //make id for content html
+            currentblogposition();
+
+        }
+        function currentblogposition() {
+            if (InUseBlog != 1) {
+                $("#Previous").prop("disabled", false)
+            }
+            else {
+                $("#Previous").prop("disabled", true)
+            }
+            if (InUseBlog == publicBlogTotal) {
+                $("#Next").prop("disabled", true)
+            }
+            else {
+                $("#Next").prop("disabled", false)
+            }
+        }
+
+        $("#Previous").click(function () {
+            $.ajax({
+                url: "/Home/GetPreviousPost/?Id=" + InUseBlog,
+                type: "GET",
+                dataType: "json",
+                success: displayBlogPosts,
+                error: function (error) {
+                    alert(error.responseText);
+                }
+            });
+        })
+
+        $("#Next").click(function () {
+
+            $.ajax({
+                url: "/Home/GetNextPost/?Id=" + InUseBlog,  //says that the current Id value is whatever is in InUseBlog Id value
+                type: "GET",
+                dataType: "json",
+                success: displayBlogPosts,
+                error: function (error) {
+                    alert(error.responseText);
+                }
+
+
+
+
+            });
+        })
+
+
+
+    </script>
+}
+
+
+    <div class="row">
+       <div class="col-sm-6 col-sm-offset-3">
+            <div class="well">
+
+                <h1 id="Title"></h1>
+                <p id="Content"></p>
+
+               
+            </div>
+        </div>
+
+        <div class="col-sm-3 sidenav">
+            <div class="well">
+                <ul id="similarArticles">
+                    <li><a href="#"><b>Apple</b></a></li>
+                    <li><a href="#"><b>Google</b></a></li>
+                    <li><a href="#"><b>Amazon</b></a></li>
+                </ul>
+            </div>
+        </div>
+       
+       <div class ="row">
+        <div class="col-sm-2 col-sm-offset-6">
+            <form action="form">
+
+                <button type="button" class="btn btn-default btn-sm value" id="Previous" value="Previous">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </button>
+
+                <button type="button" class="btn btn-default btn-sm value" id="Next" value="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+            </form>
+
+
+            </div>
+           </div>
+
+        </div>
+
+
+        @*<input type="button" class="btn btn-default" id="Previous" value="Previous" />
+            <input type="button" class="btn btn-default" id="Next" value="next" />*@
+

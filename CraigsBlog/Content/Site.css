@@ -1,0 +1,74 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,700,700italic);
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #fcfdfe;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.navbar  { background-color: #011a27; }
+.navbar-collapse collapse {background-color: #71eea3; }
+
+.btn-primary  { background-color: #e65c00 }
+.navbar-brand { }
+#logo { font-family: 'Open Sans'; color: #e65c00;}
+#registerLink { font-family: 'Open Sans'; color: #fcfdfe; }
+#loginLink {font-family: 'Open Sans'; color: #fcfdfe !important; }
+#Title {font-family: 'Open Sans'; }
+#Content { font-family: 'Open Sans';}
+
+a { /* unvisited link */
+    color: #e65c00;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:visited {color:#e65c00;}  /* visited link */
+a:hover {color: #ff751a;}  /* mouse over link */
+a:active {color:#e65c00;}  /* selected link */
+
+h2 { font-family: 'Open Sans'; }
+.control-label { font-family: 'Open Sans'; }
+footer { font-family: 'Open Sans' !important ; }
+li { font-family: 'Open Sans' !important; }

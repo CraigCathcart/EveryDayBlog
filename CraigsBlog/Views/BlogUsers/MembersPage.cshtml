@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "MembersPage";
+}
+
+<h2>MembersPage</h2>
+
+@if (Session["Id"] != null) {
+    
+    <p>
+        Welcome! @Session["Name"].ToString() You are now logged in.
+    </p>
+}
+
